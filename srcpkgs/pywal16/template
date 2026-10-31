@@ -1,0 +1,22 @@
+# Template file for 'pywal16'
+pkgname=pywal16
+version=3.8.15
+revision=1
+build_style=python3-module
+pycompile_module="pywal"
+hostmakedepends="python3-setuptools"
+depends="python3-setuptools ImageMagick"
+short_desc="Generate and change colorschemes on the fly"
+maintainer="Noname Blank <nonameblank007@gmail.com>"
+license="MIT"
+homepage="https://github.com/elles/pywal16"
+changelog="https://raw.githubusercontent.com/elles/pywal16/master/CHANGELOG.md"
+distfiles="${PYPI_SITE}/p/${pkgname}/${pkgname}-${version}.tar.gz"
+checksum=aa01949f21e9a2a3d72305f19c5e366df81da9806ad3321da294d68b48d6ddd0
+
+post_install() {
+	vmkdir usr/share/man
+  mv ${DESTDIR}/usr/man/* ${DESTDIR}/usr/share/man/ || :
+  rmdir -p ${DESTDIR}/usr/man 2>/dev/null || :
+	vlicense LICENSE.md
+}
